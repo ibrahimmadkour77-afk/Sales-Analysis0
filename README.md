@@ -2,7 +2,7 @@
 
 End-to-end analysis of 100,000 sales orders (Jan 1 – Sep 10, 2024): data cleaning and validation in Python, dashboard in Power BI.
 
-![Dashboard](images/sales_dashboard_fixed.png)
+![Dashboard](sales_dashboard_00.png)
 
 ## Key numbers
 
@@ -53,14 +53,13 @@ End-to-end analysis of 100,000 sales orders (Jan 1 – Sep 10, 2024): data clean
 - No repeat-purchase data.
 - ANOVA / t-tests for the "Preliminary" findings are planned but not yet run.
 
-## Repository contents
+## Files in this repository
 
-| Path | Description |
+| File | Description |
 |---|---|
-| `notebook/sales_project_notebook.ipynb` | Data understanding, cleaning, and quality checks (Python) |
-| `presentation/Sales_Analysis_LinkedIn_Carousel.pdf` | Slides as PDF |
-| `presentation/Sales_Analysis_Presentation_updated.pptx` | Editable PowerPoint version |
-| `images/sales_dashboard_fixed.png` | Dashboard screenshot |
+| [`sales_analysis.ipynb`](sales_analysis.ipynb) | Python notebook: data understanding, cleaning, and quality checks |
+| [`Sales_Analysis_Presentation.pptx`](Sales_Analysis_Presentation.pptx) | Presentation: methodology, findings, recommendations, limitations |
+| [`sales_dashboard_00.png`](sales_dashboard_00.png) | Dashboard screenshot |
 
 ## Tools
 
