@@ -1,68 +1,179 @@
-# Sales Performance Analysis
+# 📊 Sales Performance Analysis
 
-End-to-end analysis of 100,000 sales orders (Jan 1 – Sep 10, 2024): data cleaning and validation in Python, dashboard in Power BI.
+An end-to-end sales analysis project covering **100,000 sales orders** from **January 1 to September 10, 2024**.
 
-![Dashboard](sales_dashboard_00.png)
+The project combines **Python-based data cleaning and analysis** with an interactive **Power BI dashboard** to turn raw sales data into meaningful business insights.
 
-## Key numbers
+---
+
+## 🚀 Power BI Dashboard
+
+![Sales Dashboard](sales_dashboard_00.png)
+
+---
+
+## 📌 Project Overview
+
+The objective of this project was to analyze sales performance, understand revenue patterns, evaluate discounts, compare product categories, and identify customer and time-based trends.
+
+The workflow followed:
+
+**Raw Data → Data Cleaning → Exploratory Analysis → Business Insights → Power BI Dashboard**
+
+---
+
+## 📈 Key Numbers
 
 | Metric | Value |
-|---|---|
-| Clean orders | 90,000 (10,000 rows dropped) |
-| Gross revenue | $49.5M |
-| Net revenue | $37.2M |
-| Discount cost | $12.3M (24.9% of gross) |
-| Average order value | $550.17 |
+|---|---:|
+| Original Orders | 100,000 |
+| Clean Orders | 90,000 |
+| Rows Removed | 10,000 |
+| Gross Revenue | $49.5M |
+| Net Revenue | $37.2M |
+| Discount Cost | $12.3M |
+| Discount Rate | 24.9% |
+| Average Order Value | $550.17 |
 
-## Business questions
+---
 
-1. What are gross vs. net revenue, and what do discounts cost?
-2. How does revenue move over time?
-3. Which product category earns the most, and is the gap real?
-4. Do bigger discounts lead to bigger orders?
-5. Which customers (age / gender) order at higher value?
-6. Is any weekday or part of the month stronger?
-7. Is revenue concentrated in a few categories?
+## 🎯 Business Questions
 
-## Findings and confidence
+The analysis focused on the following questions:
+
+1. What are the gross and net revenues, and how much revenue is lost through discounts?
+2. How does revenue change over time?
+3. Which product categories generate the most revenue?
+4. Do larger discounts lead to larger orders?
+5. Do customer age and gender relate to order value?
+6. Are there stronger sales days or periods within the month?
+7. Is revenue heavily concentrated in a small number of categories?
+
+---
+
+## 🔎 Key Findings
 
 | Finding | Evidence | Confidence |
 |---|---|---|
-| Discounts don't raise order value | Correlation -0.0003 on 90,000 orders | Strong |
-| Revenue is spread evenly across categories | Top 5 = 21.3% vs. 20.8% ideal split | Strong |
-| Revenue is stable month to month | ~4% spread over 9 months | Preliminary |
-| No category clearly dominates | 6.7% gap between top and bottom of 24 | Preliminary |
-| Customer segments look similar | Under 1% gap across age and gender | Preliminary |
+| Discounts do not appear to increase order value | Correlation: **-0.0003** across 90,000 orders | Strong |
+| Revenue is distributed relatively evenly across categories | Top 5 categories represent **21.3%** vs. 20.8% for an equal split | Strong |
+| Revenue remains relatively stable month to month | Approximately **4%** spread across the 9-month period | Preliminary |
+| No category clearly dominates revenue | Approximately **6.7%** gap between the highest and lowest category | Preliminary |
+| Customer segments show similar order values | Less than **1%** difference across age and gender groups | Preliminary |
 
-**Strong** = backed by a formal statistical measure or an unambiguous gap on a large sample.
-**Preliminary** = a real pattern that still needs ANOVA / t-tests to rule out chance.
+### Confidence Notes
 
-## Data cleaning highlights
+**Strong** findings are supported by a formal statistical measure or a clear difference based on the available sample.
 
-- 10,000 rows (10%) were missing `Sales_Amount`, `Discount`, `Customer_Age` and `Customer_Gender`, all four in the same rows.
-- A chi-square test showed the missingness is unrelated to month (p = 0.73) or category (p = 0.50), so the rows were dropped rather than imputed.
-- `Discount` ranges 0–50 and is treated as a percentage.
-- No duplicate rows; `Sales_ID` is unique.
-- `Sales_Region` and `Sales_Representative` are high-cardinality and were excluded from grouped analysis.
+**Preliminary** findings represent observed patterns that would benefit from additional statistical testing such as ANOVA or t-tests.
 
-## Limitations
+---
 
-- Monthly and category revenue figures were carried over from earlier reporting and were not recomputed from raw rows in the final review.
-- `Discount` is assumed to be a percentage. If it is an absolute amount, all net-revenue figures must be recalculated.
-- Revenue only: no cost or profit data.
-- No repeat-purchase data.
-- ANOVA / t-tests for the "Preliminary" findings are planned but not yet run.
+## 🧹 Data Cleaning & Validation
 
-## Files in this repository
+The dataset was cleaned and validated before analysis.
+
+### Main Cleaning Steps
+
+- Removed **10,000 rows (10%)** with missing values.
+- Missing values occurred in `Sales_Amount`, `Discount`, `Customer_Age`, and `Customer_Gender`.
+- The missing values occurred in the same rows.
+- A chi-square test indicated that missingness was not significantly related to:
+  - Month (**p = 0.73**)
+  - Product Category (**p = 0.50**)
+- No duplicate rows were identified.
+- `Sales_ID` was unique across the dataset.
+- `Discount` was treated as a percentage ranging from **0–50**.
+- High-cardinality fields such as `Sales_Region` and `Sales_Representative` were excluded from grouped analysis.
+
+---
+
+## 💡 Business Insights
+
+### Discounts
+
+The correlation between discount percentage and order value was approximately **-0.0003**, indicating virtually no linear relationship in this dataset.
+
+### Product Categories
+
+Revenue was relatively evenly distributed across categories, with no single category accounting for a dominant share of total revenue.
+
+### Customer Segments
+
+Order values were broadly similar across age and gender groups, with differences of less than 1%.
+
+### Revenue Over Time
+
+Monthly revenue remained relatively stable throughout the analyzed period, with approximately a 4% spread between the months.
+
+---
+
+## ⚠️ Limitations
+
+- Some monthly and category revenue figures were carried over from earlier reporting and were not recomputed from raw rows during the final review.
+- `Discount` is assumed to represent a percentage. If it represents an absolute amount, net-revenue calculations would need to be recalculated.
+- The dataset contains revenue information but does not contain cost or profit data.
+- There is no repeat-purchase or customer lifetime data.
+- ANOVA and t-tests for the preliminary findings were planned but were not included in the final analysis.
+- The dataset represents a specific period from **January 1 to September 10, 2024**, so the findings should not automatically be generalized to other periods.
+
+---
+
+## 🛠️ Tools & Technologies
+
+- **Python**
+- **Pandas**
+- **NumPy**
+- **SciPy**
+- **Matplotlib**
+- **Seaborn**
+- **Power BI**
+- **GitHub**
+
+---
+
+## 📂 Repository Contents
 
 | File | Description |
 |---|---|
-| [`sales_analysis.ipynb`](sales_analysis.ipynb) | Python notebook: data understanding, cleaning, and quality checks |
-| [`Sales_Analysis_Presentation.pptx`](Sales_Analysis_Presentation.pptx) | Presentation: methodology, findings, recommendations, limitations |
-| [`sales_dashboard_00.png`](sales_dashboard_00.png) | Dashboard screenshot |
+| `sales_analysis0` | Sales analysis work |
+| `Sales_Analysis_Presentation.pptx` | Project presentation |
+| `sales_dashboard_00.png` | Power BI dashboard |
+| `README.md` | Project documentation |
 
-## Tools
+---
 
-Python (pandas, NumPy, SciPy, matplotlib, seaborn), Power BI.
+## 📊 Project Deliverables
 
-**Dataset:** `sales_100k.csv` (not included in this repo).
+### Power BI Dashboard
+
+The dashboard provides a visual overview of:
+
+- Revenue performance
+- Gross vs. net revenue
+- Discounts
+- Category performance
+- Customer segments
+- Time-based sales patterns
+
+### Project Presentation
+
+A complete presentation summarizing the analysis, findings, and business insights is available here:
+
+**[View Sales Analysis Presentation](Sales_Analysis_Presentation.pptx)**
+
+---
+
+## 📁 Dataset
+
+The original dataset contains **100,000 sales orders** covering the period from **January 1 to September 10, 2024**.
+
+The raw dataset is not included in this repository.
+
+---
+
+## 👤 Project
+
+**Sales Performance Analysis**
+
+Built as a portfolio project demonstrating an end-to-end **Data Analysis workflow using Python and Power BI**.
